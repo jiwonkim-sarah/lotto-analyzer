@@ -1,0 +1,62 @@
+name: 주간 갱신 및 배포
+
+on:
+  schedule:
+    # 매주 일요일 04:00 UTC = 13:00 KST (토요일 밤 추첨 결과 반영)
+    - cron: "0 4 * * 0"
+    # GitHub의 스케줄은 부하에 따라 지연·누락될 수 있어 1시간 뒤 예비 실행을 둔다.
+    # 추천 번호는 최신 회차 번호를 시드로 쓰므로 같은 주에 다시 돌려도 결과가 같다.
+    - cron: "0 5 * * 0"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 데이터 수집 및 추천번호 생성
+        run: python scripts/build.py
+
+      - name: 변경분 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain docs)" ]; then
+            git add docs
+            git commit -m "chore: 로또 데이터 갱신 ($(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST)"
+            git push
+          else
+            echo "변경 없음 — 커밋 생략"
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

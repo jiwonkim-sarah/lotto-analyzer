@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>로또 6/45 5년 통계 분석 · 추천번호 5세트</title>
+<meta name="description" content="최근 5년치 로또 6/45 당첨번호를 분석해 5가지 전략의 추천 번호 세트를 매주 일요일 오후 1시에 갱신합니다.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23fbc400'/><text x='16' y='22' font-size='16' text-anchor='middle' font-family='sans-serif'>45</text></svg>">
+<style>
+:root {
+  color-scheme: light;
+  --page:           #f9f9f7;
+  --surface:        #fcfcfb;
+  --ink:            #0b0b0b;
+  --ink-2:          #52514e;
+  --muted:          #898781;
+  --grid:           #e1e0d9;
+  --axis:           #c3c2b7;
+  --border:         rgba(11,11,11,0.10);
+  --series-1:       #2a78d6;
+  --series-1-soft:  #cde2fb;
+  --series-dim:     #c9c8c0;
+  --accent-warm:    #eb6834;
+  --shadow:         0 1px 2px rgba(11,11,11,.05), 0 8px 24px -12px rgba(11,11,11,.14);
+  --ball-ink:       #14140f;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page:          #0d0d0d;
+    --surface:       #1a1a19;
+    --ink:           #ffffff;
+    --ink-2:         #c3c2b7;
+    --muted:         #898781;
+    --grid:          #2c2c2a;
+    --axis:          #383835;
+    --border:        rgba(255,255,255,0.10);
+    --series-1:      #3987e5;
+    --series-1-soft: #184f95;
+    --series-dim:    #45443f;
+    --accent-warm:   #d95926;
+    --shadow:        0 1px 2px rgba(0,0,0,.5), 0 8px 24px -12px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page:          #0d0d0d;
+  --surface:       #1a1a19;
+  --ink:           #ffffff;
+  --ink-2:         #c3c2b7;
+  --muted:         #898781;
+  --grid:          #2c2c2a;
+  --axis:          #383835;
+  --border:        rgba(255,255,255,0.10);
+  --series-1:      #3987e5;
+  --series-1-soft: #184f95;
+  --series-dim:    #45443f;
+  --accent-warm:   #d95926;
+  --shadow:        0 1px 2px rgba(0,0,0,.5), 0 8px 24px -12px rgba(0,0,0,.7);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+.wrap { max-width: 1020px; margin: 0 auto; padding: 0 20px 72px; }
+
+/* ---------------------------------------------------------------- header */
+header { padding: 40px 0 8px; }
+.topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.25; margin: 0 0 6px; letter-spacing: -0.02em; }
+.sub { color: var(--ink-2); font-size: .95rem; margin: 0; }
+.theme-btn {
+  flex: none; background: var(--surface); color: var(--ink-2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 7px 14px; font: inherit; font-size: .85rem; cursor: pointer;
+}
+.theme-btn:hover { color: var(--ink); }
+
+/* ---------------------------------------------------------------- tiles */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 26px 0 8px; }
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; }
+.tile .k { font-size: .78rem; color: var(--muted); letter-spacing: .01em; }
+.tile .v { font-size: 1.5rem; font-weight: 650; letter-spacing: -0.02em; margin-top: 2px; }
+.tile .n { font-size: .78rem; color: var(--ink-2); }
+
+/* ---------------------------------------------------------------- sections */
+section { margin-top: 44px; }
+h2 { font-size: 1.15rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+.lede { color: var(--ink-2); font-size: .9rem; margin: 0 0 18px; }
+
+/* ---------------------------------------------------------------- balls */
+.balls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ball {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  font-weight: 700; font-size: 1rem; color: var(--ball-ink);
+  box-shadow: inset 0 -3px 8px rgba(0,0,0,.14);
+}
+.ball.sm { width: 30px; height: 30px; font-size: .82rem; }
+.ball.bonus { outline: 2px dashed var(--muted); outline-offset: 2px; }
+
+/* ---------------------------------------------------------------- rec cards */
+.recs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.rec {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px;
+}
+.rec-head { display: flex; align-items: center; gap: 9px; }
+.rec-idx {
+  width: 24px; height: 24px; border-radius: 7px; background: var(--series-1-soft); color: var(--ink);
+  display: grid; place-items: center; font-size: .78rem; font-weight: 700; flex: none;
+}
+.rec-title { font-weight: 650; font-size: 1rem; }
+.rec-desc { color: var(--ink-2); font-size: .85rem; margin: 0; }
+.rec-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px; }
+.chip {
+  font-size: .74rem; color: var(--ink-2); background: var(--page);
+  border: 1px solid var(--border); border-radius: 999px; padding: 2px 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------- charts */
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 18px 18px 12px; box-shadow: var(--shadow); margin-bottom: 16px;
+}
+.card h3 { font-size: .98rem; margin: 0 0 2px; }
+.card .note { color: var(--muted); font-size: .82rem; margin: 0 0 12px; }
+.chart-scroll { overflow-x: auto; overflow-y: hidden; }
+.chart-scroll svg { display: block; width: 100%; min-width: 520px; height: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin: 0 0 10px; font-size: .8rem; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+.swatch.rule { width: 14px; height: 2px; border-radius: 1px; }
+
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.grid2 .card { margin-bottom: 0; }
+
+/* ---------------------------------------------------------------- tooltip */
+#tip {
+  position: fixed; z-index: 40; pointer-events: none; opacity: 0; transition: opacity .1s;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--border);
+  border-radius: 9px; padding: 7px 10px; font-size: .8rem; box-shadow: var(--shadow);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+#tip.on { opacity: 1; }
+#tip b { font-weight: 650; }
+
+/* ---------------------------------------------------------------- tables */
+details { margin-top: 8px; border-top: 1px solid var(--border); }
+summary {
+  cursor: pointer; font-size: .82rem; color: var(--ink-2); padding: 9px 0 4px;
+  list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "▸ "; color: var(--muted); }
+details[open] summary::before { content: "▾ "; }
+summary:hover { color: var(--ink); }
+.tbl-scroll { overflow-x: auto; padding-bottom: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: .84rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 6px 10px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th { color: var(--muted); font-weight: 550; text-align: right; }
+th:first-child, td:first-child { text-align: left; }
+tbody tr:last-child td { border-bottom: none; }
+
+/* ---------------------------------------------------------------- misc */
+.recent-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 9px 0; border-bottom: 1px solid var(--grid); }
+.recent-row:last-child { border-bottom: none; }
+.recent-no { font-size: .82rem; color: var(--muted); width: 108px; flex: none; font-variant-numeric: tabular-nums; }
+.plus { color: var(--muted); font-size: .9rem; padding: 0 2px; }
+
+.pairs { display: flex; flex-wrap: wrap; gap: 10px; }
+.pair {
+  display: flex; align-items: center; gap: 5px; background: var(--page);
+  border: 1px solid var(--border); border-radius: 999px; padding: 5px 11px 5px 6px;
+  font-size: .8rem; color: var(--ink-2); font-variant-numeric: tabular-nums;
+}
+
+.disclaimer {
+  margin-top: 44px; background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-warm); border-radius: 12px; padding: 16px 18px;
+  color: var(--ink-2); font-size: .86rem;
+}
+.disclaimer strong { color: var(--ink); }
+.disclaimer p { margin: 0 0 8px; }
+.disclaimer p:last-child { margin: 0; }
+footer { margin-top: 28px; color: var(--muted); font-size: .8rem; }
+footer a { color: var(--ink-2); }
+</style>
+</head>
+<body>
+<div id="tip" role="status" aria-live="polite"></div>
+
+<div class="wrap">
+  <header>
+    <div class="topbar">
+      <div>
+        <h1>로또 6/45 최근 5년 통계 분석</h1>
+        <p class="sub" id="sub">데이터를 불러오는 중…</p>
+      </div>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="라이트/다크 모드 전환">◐ 테마</button>
+    </div>
+    <div class="tiles" id="tiles"></div>
+  </header>
+
+  <main>
+    <section id="recSection">
+      <h2>추천 번호 5세트</h2>
+      <p class="lede" id="recLede"></p>
+      <div class="recs" id="recs"></div>
+    </section>
+
+    <section>
+      <h2>번호별 출현 빈도</h2>
+      <p class="lede">분석 구간 안에서 1~45번이 각각 몇 번 나왔는지. 완전 무작위라면 모두 기대값 근처에 모입니다.</p>
+      <div class="card">
+        <h3>1~45번 출현 횟수</h3>
+        <p class="note" id="freqNote"></p>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--series-1)"></i>출현 상위 6개</span>
+          <span><i class="swatch" style="background:var(--series-dim)"></i>그 외</span>
+          <span><i class="swatch rule" style="background:var(--muted)"></i>기대값</span>
+        </div>
+        <div class="chart-scroll"><svg id="freqChart" role="img" aria-label="번호별 출현 횟수 막대 차트"></svg></div>
+        <details>
+          <summary>표로 보기</summary>
+          <div class="tbl-scroll"><table id="freqTable"></table></div>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <h2>당첨 조합의 통계적 성질</h2>
+      <p class="lede">추천 세트가 통과해야 하는 필터의 근거입니다. 실제 당첨 조합이 어떤 모양이었는지 보여줍니다.</p>
+      <div class="grid2">
+        <div class="card">
+          <h3>당첨번호 6개 합계 분포</h3>
+          <p class="note" id="sumNote"></p>
+          <div class="chart-scroll"><svg id="sumChart" role="img" aria-label="당첨번호 합계 분포 막대 차트"></svg></div>
+          <details>
+            <summary>표로 보기</summary>
+            <div class="tbl-scroll"><table id="sumTable"></table></div>
+          </details>
+        </div>
+        <div class="card">
+          <h3>홀수 개수 분포</h3>
+          <p class="note">6개 중 홀수가 몇 개였는지. 2~4개가 대부분을 차지합니다.</p>
+          <div class="chart-scroll"><svg id="oddChart" role="img" aria-label="홀수 개수 분포 막대 차트"></svg></div>
+          <details>
+            <summary>표로 보기</summary>
+            <div class="tbl-scroll"><table id="oddTable"></table></div>
+          </details>
+        </div>
+      </div>
+      <div class="card">
+        <h3>구간별 출현 비율</h3>
+        <p class="note">구간마다 포함된 번호 개수가 다르므로 기대 비율과 나란히 봅니다.</p>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--series-1)"></i>실제 비율</span>
+          <span><i class="swatch rule" style="background:var(--muted)"></i>기대 비율</span>
+        </div>
+        <div class="chart-scroll"><svg id="bandChart" role="img" aria-label="구간별 출현 비율 막대 차트"></svg></div>
+        <details>
+          <summary>표로 보기</summary>
+          <div class="tbl-scroll"><table id="bandTable"></table></div>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <h2>참고 데이터</h2>
+      <div class="grid2">
+        <div class="card">
+          <h3>최근 10회 당첨번호</h3>
+          <p class="note">맨 오른쪽 점선 테두리는 보너스 번호입니다.</p>
+          <div id="recent"></div>
+        </div>
+        <div class="card">
+          <h3>궁합수 · 동반 출현 상위 12쌍</h3>
+          <p class="note">분석 구간에서 같은 회차에 함께 나온 횟수가 많았던 번호 쌍입니다.</p>
+          <div class="pairs" id="pairs"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>장기 미출현 번호</h3>
+        <p class="note">전체 이력 기준으로 마지막 출현 이후 지난 회차 수입니다.</p>
+        <div class="balls" id="overdue"></div>
+      </div>
+    </section>
+
+    <div class="disclaimer">
+      <p><strong>먼저 알아두실 점.</strong> 로또는 매 회차 독립적으로 추첨되며, 각 번호가 나올 확률은 언제나 동일합니다. 과거에 많이 나온 번호가 다음에 더 나올 이유도, 오래 안 나온 번호가 나올 때가 된 이유도 없습니다(도박사의 오류).</p>
+      <p>이 사이트의 통계는 <strong>지난 결과를 요약해서 보여줄 뿐, 당첨 확률을 높여주지 않습니다.</strong> 추천 세트는 각 전략을 그대로 적용해 만든 것이며 1등 확률은 어떤 조합이든 <strong>1/8,145,060</strong>으로 같습니다. 재미와 번호 선택의 참고용으로만 이용해 주세요.</p>
+      <p>19세 미만은 복권을 구매할 수 없습니다. 도박 문제 상담 · 한국도박문제예방치유원 <strong>1336</strong></p>
+    </div>
+
+    <footer>
+      <p id="foot"></p>
+    </footer>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ------------------------------------------------------------- theme */
+  var root = document.documentElement;
+  var saved = null;
+  try { saved = localStorage.getItem("lotto-theme"); } catch (e) {}
+  if (saved) root.setAttribute("data-theme", saved);
+  document.getElementById("themeBtn").addEventListener("click", function () {
+    var isDark = root.getAttribute("data-theme") === "dark" ||
+      (!root.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+    var next = isDark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("lotto-theme", next); } catch (e) {}
+    redraw();
+  });
+
+  var D = window.LOTTO_DATA;
+  if (!D) {
+    document.getElementById("sub").textContent = "데이터를 불러오지 못했습니다 (data.js 없음).";
+    return;
+  }
+
+  /* ------------------------------------------------------------- utils */
+  var SVGNS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, text) {
+    var n = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) if (attrs[k] != null) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function h(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function ballColor(n) {
+    return n <= 10 ? "#fbc400" : n <= 20 ? "#69c8f2" : n <= 30 ? "#ff7272" : n <= 40 ? "#aaaaaa" : "#b0d840";
+  }
+  function ballEl(n, extra) {
+    var b = h("div", "ball" + (extra ? " " + extra : ""), String(n));
+    b.style.background = ballColor(n);
+    return b;
+  }
+  function fmtDate(iso) {
+    var p = String(iso).slice(0, 10).split("-");
+    return p[0] + "." + p[1] + "." + p[2];
+  }
+  function css(name) {
+    return getComputedStyle(root).getPropertyValue(name).trim();
+  }
+
+  /* ------------------------------------------------------------- tooltip */
+  var tip = document.getElementById("tip");
+  function showTip(evt, html) {
+    tip.innerHTML = html;
+    tip.classList.add("on");
+    moveTip(evt);
+  }
+  function moveTip(evt) {
+    var pad = 14, w = tip.offsetWidth, hgt = tip.offsetHeight;
+    var x = evt.clientX + pad, y = evt.clientY - hgt - 10;
+    if (x + w > innerWidth - 8) x = evt.clientX - w - pad;
+    if (y < 8) y = evt.clientY + pad;
+    tip.style.left = x + "px";
+    tip.style.top = y + "px";
+  }
+  function hideTip() { tip.classList.remove("on"); }
+
+  /* ------------------------------------------------------------- bar chart */
+  /* items: [{ label, value, color, tip, sub }]  ref: {value, label} */
+  function barChart(svg, opts) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var items = opts.items;
+    var W = opts.width || 900, H = opts.height || 240;
+    var padL = opts.padL != null ? opts.padL : 40, padR = 12, padT = 14, padB = 34;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxV = Math.max.apply(null, items.map(function (d) { return Math.max(d.value, d.ref || 0); }));
+    if (opts.ref && opts.ref.value != null) maxV = Math.max(maxV, opts.ref.value);
+    var ticks = niceTicks(maxV, 5);
+    var top = ticks.top;
+    var y = function (v) { return padT + plotH - (v / top) * plotH; };
+    var slot = plotW / items.length;
+    var gapPx = items.length > 20 ? 2 : 4;
+    var barW = Math.min(opts.maxBarW || 48, Math.max(2, slot - gapPx));
+
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+    var gridC = css("--grid"), axisC = css("--axis"), mutedC = css("--muted");
+
+    /* gridlines + y ticks */
+    for (var i = 0; i <= ticks.count; i++) {
+      var v = ticks.step * i, yy = y(v);
+      svg.appendChild(el("line", {
+        x1: padL, x2: W - padR, y1: yy, y2: yy,
+        stroke: i === 0 ? axisC : gridC, "stroke-width": 1, "pointer-events": "none"
+      }));
+      svg.appendChild(el("text", {
+        x: padL - 8, y: yy + 4, "text-anchor": "end", fill: mutedC, "pointer-events": "none",
+        "font-size": 11, "font-family": "inherit", "font-variant-numeric": "tabular-nums"
+      }, opts.yFmt ? opts.yFmt(v) : String(v)));
+    }
+
+    /* bars */
+    items.forEach(function (d, i) {
+      var x = padL + i * slot + (slot - barW) / 2;
+      var yy = y(d.value), hgt = padT + plotH - yy;
+      var r = Math.min(4, barW / 2, hgt);
+      var path = hgt <= 0.5 ? "" :
+        "M" + x + "," + (padT + plotH) +
+        "L" + x + "," + (yy + r) +
+        "Q" + x + "," + yy + " " + (x + r) + "," + yy +
+        "L" + (x + barW - r) + "," + yy +
+        "Q" + (x + barW) + "," + yy + " " + (x + barW) + "," + (yy + r) +
+        "L" + (x + barW) + "," + (padT + plotH) + "Z";
+      if (path) svg.appendChild(el("path", { d: path, fill: d.color, "pointer-events": "none" }));
+
+      /* 기대값 등 참조 표식 */
+      if (d.ref != null) {
+        var ry = y(d.ref);
+        svg.appendChild(el("line", {
+          x1: x - 4, x2: x + barW + 4, y1: ry, y2: ry, stroke: mutedC,
+          "stroke-width": 2, "stroke-linecap": "round", "pointer-events": "none"
+        }));
+      }
+
+      /* hit target: 열 전체 */
+      var hit = el("rect", { x: padL + i * slot, y: padT, width: slot, height: plotH, fill: "transparent" });
+      hit.style.cursor = "default";
+      hit.addEventListener("mouseenter", function (e) { showTip(e, d.tip); });
+      hit.addEventListener("mousemove", moveTip);
+      hit.addEventListener("mouseleave", hideTip);
+      svg.appendChild(hit);
+    });
+
+    /* 전역 기대값 라인 */
+    if (opts.ref && opts.ref.value != null) {
+      var ry2 = y(opts.ref.value);
+      svg.appendChild(el("line", {
+        x1: padL, x2: W - padR, y1: ry2, y2: ry2, stroke: mutedC,
+        "stroke-width": 2, "pointer-events": "none"
+      }));
+    }
+
+    /* x labels — 겹치지 않도록 선택적으로 */
+    var every = opts.labelEvery || Math.max(1, Math.ceil(items.length / (plotW / 34)));
+    items.forEach(function (d, i) {
+      if (i % every !== 0) return;
+      svg.appendChild(el("text", {
+        x: padL + i * slot + slot / 2, y: H - padB + 18, "text-anchor": "middle",
+        fill: mutedC, "font-size": 11, "font-family": "inherit", "pointer-events": "none"
+      }, d.label));
+    });
+
+    if (opts.xTitle) {
+      svg.appendChild(el("text", {
+        x: padL + plotW / 2, y: H - 2, "text-anchor": "middle", fill: mutedC,
+        "font-size": 11, "font-family": "inherit", "pointer-events": "none"
+      }, opts.xTitle));
+    }
+  }
+
+  /* 눈금이 딱 떨어지도록 step을 먼저 고르고 top을 맞춘다 */
+  function niceTicks(maxV, target) {
+    if (!(maxV > 0)) return { step: 1, top: 1, count: 1 };
+    var raw = maxV / target;
+    var mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    var step = mag * 10;
+    [1, 2, 2.5, 5, 10].some(function (m) {
+      if (maxV / (m * mag) <= target + 1e-9) { step = m * mag; return true; }
+      return false;
+    });
+    var count = Math.ceil(maxV / step);
+    return { step: step, top: step * count, count: count };
+  }
+
+  function table(node, cols, rows) {
+    node.innerHTML = "";
+    var thead = document.createElement("thead"), tr = document.createElement("tr");
+    cols.forEach(function (c) { tr.appendChild(h("th", null, c)); });
+    thead.appendChild(tr);
+    var tbody = document.createElement("tbody");
+    rows.forEach(function (r) {
+      var t = document.createElement("tr");
+      r.forEach(function (c) { t.appendChild(h("td", null, String(c))); });
+      tbody.appendChild(t);
+    });
+    node.appendChild(thead);
+    node.appendChild(tbody);
+  }
+
+  /* ------------------------------------------------------------- render: static parts */
+  var w = D.window;
+  document.getElementById("sub").textContent =
+    w.from_draw + "회 ~ " + w.to_draw + "회 · " + fmtDate(w.from_date) + " ~ " + fmtDate(w.to_date) +
+    " (" + w.draw_count + "회차) 기준";
+
+  var expected = w.draw_count * 6 / 45;
+  document.getElementById("freqNote").textContent =
+    "가로 회색 선은 기대값 " + expected.toFixed(1) + "회입니다. 실제 최다·최소 번호도 이 선에서 크게 벗어나지 않습니다.";
+  document.getElementById("sumNote").textContent =
+    "평균 " + D.sum_mean + " · 중간 80%가 " + D.sum_p10 + "~" + D.sum_p90 + " 구간에 들어옵니다.";
+  document.getElementById("recLede").textContent =
+    "아래 다섯 세트는 " + D.latest.no + "회 결과를 시드로 계산했습니다. 다음 추첨(" +
+    D.next_draw_no + "회)이 반영되면 매주 일요일 오후 1시에 자동으로 새 번호로 바뀝니다.";
+
+  /* tiles */
+  var tiles = document.getElementById("tiles");
+  var latestBalls = D.latest.numbers.join(" · ");
+  [
+    { k: "최신 회차", v: D.latest.no + "회", n: fmtDate(D.latest.date) },
+    { k: "최신 당첨번호", v: null, n: "보너스 " + D.latest.bonus, balls: D.latest.numbers },
+    { k: "분석 회차 수", v: w.draw_count + "회", n: "최근 " + w.years + "년" },
+    { k: "합계 평균", v: String(D.sum_mean), n: D.sum_p10 + "~" + D.sum_p90 + " (80%)" },
+    { k: "연속번호 포함", v: D.consecutive_rate + "%", n: "회차 기준" }
+  ].forEach(function (t) {
+    var c = h("div", "tile");
+    c.appendChild(h("div", "k", t.k));
+    if (t.balls) {
+      var b = h("div", "balls");
+      b.style.marginTop = "6px";
+      t.balls.forEach(function (n) { b.appendChild(ballEl(n, "sm")); });
+      c.appendChild(b);
+    } else {
+      c.appendChild(h("div", "v", t.v));
+    }
+    c.appendChild(h("div", "n", t.n));
+    tiles.appendChild(c);
+  });
+
+  /* recommendations */
+  var recs = document.getElementById("recs");
+  D.recommendations.forEach(function (r, i) {
+    var card = h("div", "rec");
+    var head = h("div", "rec-head");
+    head.appendChild(h("div", "rec-idx", String(i + 1)));
+    head.appendChild(h("div", "rec-title", r.label));
+    card.appendChild(head);
+    card.appendChild(h("p", "rec-desc", r.desc));
+    var b = h("div", "balls");
+    r.numbers.forEach(function (n) { b.appendChild(ballEl(n)); });
+    card.appendChild(b);
+    var meta = h("div", "rec-meta");
+    meta.appendChild(h("span", "chip", "합계 " + r.sum));
+    meta.appendChild(h("span", "chip", "홀 " + r.odd + " : 짝 " + (6 - r.odd)));
+    meta.appendChild(h("span", "chip", "구간 " + r.bands + "/5"));
+    card.appendChild(meta);
+    recs.appendChild(card);
+  });
+
+  /* recent draws */
+  var recent = document.getElementById("recent");
+  D.recent.forEach(function (d) {
+    var row = h("div", "recent-row");
+    row.appendChild(h("div", "recent-no", d.no + "회 · " + fmtDate(d.date)));
+    var b = h("div", "balls");
+    d.numbers.forEach(function (n) { b.appendChild(ballEl(n, "sm")); });
+    b.appendChild(h("span", "plus", "+"));
+    b.appendChild(ballEl(d.bonus, "sm bonus"));
+    row.appendChild(b);
+    recent.appendChild(row);
+  });
+
+  /* pairs */
+  var pairs = document.getElementById("pairs");
+  D.top_pairs.forEach(function (p) {
+    var el2 = h("div", "pair");
+    el2.appendChild(ballEl(p.a, "sm"));
+    el2.appendChild(ballEl(p.b, "sm"));
+    el2.appendChild(h("span", null, p.count + "회"));
+    pairs.appendChild(el2);
+  });
+
+  /* overdue */
+  var overdue = document.getElementById("overdue");
+  var gapByN = {};
+  D.frequency.forEach(function (f) { gapByN[f.n] = f.gap; });
+  D.overdue.forEach(function (n) {
+    var box = h("div", "pair");
+    box.appendChild(ballEl(n, "sm"));
+    box.appendChild(h("span", null, gapByN[n] + "회 미출현"));
+    overdue.appendChild(box);
+  });
+
+  /* tables */
+  table(document.getElementById("freqTable"),
+    ["번호", "출현", "비율", "기대 대비", "미출현"],
+    D.frequency.map(function (f) {
+      return [f.n + "번", f.count + "회", f.pct + "%", (f.vs_expected > 0 ? "+" : "") + f.vs_expected, f.gap + "회"];
+    }));
+  table(document.getElementById("sumTable"), ["합계 구간", "회차", "비율"],
+    D.sum_hist.map(function (s) {
+      return [s.label, s.count + "회", (s.count / w.draw_count * 100).toFixed(1) + "%"];
+    }));
+  table(document.getElementById("oddTable"), ["홀수 개수", "회차", "비율"],
+    D.odd_hist.map(function (o) {
+      return [o.odd + "개", o.count + "회", (o.count / w.draw_count * 100).toFixed(1) + "%"];
+    }));
+  table(document.getElementById("bandTable"), ["구간", "출현", "실제 비율", "기대 비율"],
+    D.band_dist.map(function (b) {
+      return [b.label + "번", b.count + "회", b.pct + "%", b.expected_pct + "%"];
+    }));
+
+  document.getElementById("foot").innerHTML =
+    "데이터 " + D.totals.all_draws + "회 전체 수집 · 생성 " + D.generated_at.replace("T", " ").slice(0, 16) +
+    " (KST) · 출처 " + D.source + " · 매주 일요일 13:00 KST 자동 갱신";
+
+  /* ------------------------------------------------------------- render: charts */
+  function redraw() {
+    var s1 = css("--series-1"), dim = css("--series-dim");
+    var hot = {};
+    D.hot.forEach(function (n) { hot[n] = true; });
+
+    barChart(document.getElementById("freqChart"), {
+      height: 250,
+      padL: 40,
+      labelEvery: 2,
+      ref: { value: expected },
+      items: D.frequency.map(function (f) {
+        return {
+          label: String(f.n),
+          value: f.count,
+          color: hot[f.n] ? s1 : dim,
+          tip: "<b>" + f.n + "번</b> — " + f.count + "회 (" + f.pct + "%)<br>기대 대비 " +
+               (f.vs_expected > 0 ? "+" : "") + f.vs_expected + "회 · 최근 " + f.gap + "회차 전 출현"
+        };
+      }),
+      xTitle: "번호"
+    });
+
+    barChart(document.getElementById("sumChart"), {
+      width: 620, height: 240, padL: 36, labelEvery: 2,
+      items: D.sum_hist.map(function (s) {
+        return {
+          label: s.label.split("–")[0],
+          value: s.count,
+          color: s1,
+          tip: "<b>합계 " + s.label + "</b> — " + s.count + "회 (" +
+               (s.count / w.draw_count * 100).toFixed(1) + "%)"
+        };
+      }),
+      xTitle: "6개 번호의 합"
+    });
+
+    barChart(document.getElementById("oddChart"), {
+      width: 620, height: 240, padL: 36,
+      items: D.odd_hist.map(function (o) {
+        return {
+          label: o.odd + "개",
+          value: o.count,
+          color: s1,
+          tip: "<b>홀수 " + o.odd + "개</b> — " + o.count + "회 (" +
+               (o.count / w.draw_count * 100).toFixed(1) + "%)"
+        };
+      }),
+      xTitle: "홀수 개수"
+    });
+
+    barChart(document.getElementById("bandChart"), {
+      width: 700, height: 220, padL: 44, maxBarW: 64,
+      yFmt: function (v) { return v + "%"; },
+      items: D.band_dist.map(function (b) {
+        return {
+          label: b.label + "번",
+          value: b.pct,
+          ref: b.expected_pct,
+          color: s1,
+          tip: "<b>" + b.label + "번</b> — 실제 " + b.pct + "% / 기대 " + b.expected_pct + "%<br>" + b.count + "개 출현"
+        };
+      }),
+      xTitle: "번호 구간"
+    });
+  }
+
+  redraw();
+  addEventListener("resize", function () { hideTip(); });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redraw);
+})();
+</script>
+</body>
+</html>
