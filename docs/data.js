@@ -1,5 +1,5 @@
 window.LOTTO_DATA = {
- "generated_at": "2026-08-24T11:20:59+09:00",
+ "generated_at": "2026-08-24T11:21:17+09:00",
  "source": "smok95/lotto (동행복권 미러) + 동행복권 공식 API",
  "latest": {
   "no": 1238,
