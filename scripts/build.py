@@ -33,6 +33,7 @@ KST = timezone(timedelta(hours=9))
 YEARS = 5
 BALL_MIN, BALL_MAX = 1, 45
 PICK = 6
+EXCLUDE = 5  # 5번 전략에서 제외할 "가능성이 가장 낮은" 번호 개수
 
 BANDS = [(1, 10), (11, 20), (21, 30), (31, 40), (41, 45)]
 
@@ -367,22 +368,31 @@ def recommend(stats, seed):
         )
     )
 
-    # 5) 통계 필터 랜덤 — 완전 무작위 후 통계 필터만 통과
+    # 5) 하위 5개 제외 랜덤 — 가능성이 가장 낮은 5개를 뺀 40개에서 무작위 추출
     rng = random.Random(seed * 31 + 5)
+    # 가능성 = 최근 5년 출현 횟수. 동률이면 최근에 나온(미출현 간격이 짧은) 쪽을 더 낮게 본다.
+    excluded = sorted(
+        sorted(freq, key=lambda n: (freq[n], gaps[n], n))[:EXCLUDE]
+    )
+    pool = [n for n in range(BALL_MIN, BALL_MAX + 1) if n not in excluded]
     pick = None
     for _ in range(6000):
-        cand = sorted(rng.sample(range(BALL_MIN, BALL_MAX + 1), PICK))
+        cand = sorted(rng.sample(pool, PICK))
         if passes_filters(cand, lo_sum, hi_sum):
             pick = cand
             break
     if pick is None:
-        pick = sorted(rng.sample(range(BALL_MIN, BALL_MAX + 1), PICK))
+        pick = sorted(rng.sample(pool, PICK))
     out.append(
         {
-            "label": "필터 랜덤",
+            "label": "하위 제외 랜덤",
             "tag": "random",
-            "desc": "무작위 추출 후 합계·홀짝·연속·끝자리 통계 필터를 통과한 조합",
+            "desc": (
+                f"최근 5년 출현 빈도가 가장 낮은 {EXCLUDE}개({', '.join(map(str, excluded))})를 "
+                f"제외한 {len(pool)}개에서 무작위 추출 후 통계 필터를 통과한 조합"
+            ),
             "numbers": pick,
+            "excluded": excluded,
             "sum": sum(pick),
             "odd": sum(1 for n in pick if n % 2),
             "bands": len({band_of(n) for n in pick}),

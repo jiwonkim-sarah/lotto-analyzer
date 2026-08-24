@@ -555,6 +555,9 @@ footer a { color: var(--ink-2); }
     meta.appendChild(h("span", "chip", "합계 " + r.sum));
     meta.appendChild(h("span", "chip", "홀 " + r.odd + " : 짝 " + (6 - r.odd)));
     meta.appendChild(h("span", "chip", "구간 " + r.bands + "/5"));
+    if (r.excluded && r.excluded.length) {
+      meta.appendChild(h("span", "chip", "제외 " + r.excluded.join(", ")));
+    }
     card.appendChild(meta);
     recs.appendChild(card);
   });
