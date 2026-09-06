@@ -1,30 +1,30 @@
 window.LOTTO_DATA = {
- "generated_at": "2026-08-30T19:13:03+09:00",
+ "generated_at": "2026-09-06T17:09:03+09:00",
  "source": "smok95/lotto (동행복권 미러) + 동행복권 공식 API",
  "latest": {
-  "no": 1239,
-  "date": "2026-08-29",
+  "no": 1240,
+  "date": "2026-09-05",
   "numbers": [
    11,
    13,
-   22,
-   32,
-   33,
-   36
+   19,
+   20,
+   31,
+   44
   ],
-  "bonus": 8
+  "bonus": 27
  },
- "next_draw_no": 1240,
+ "next_draw_no": 1241,
  "window": {
   "years": 5,
   "draw_count": 261,
-  "from_draw": 979,
-  "to_draw": 1239,
-  "from_date": "2021-09-04",
-  "to_date": "2026-08-29"
+  "from_draw": 980,
+  "to_draw": 1240,
+  "from_date": "2021-09-11",
+  "to_date": "2026-09-05"
  },
  "totals": {
-  "all_draws": 1239
+  "all_draws": 1240
  },
  "recommendations": [
   {
@@ -32,76 +32,76 @@ window.LOTTO_DATA = {
    "tag": "hot",
    "desc": "최근 5년 출현 빈도 상위 번호에 가중치를 둔 조합",
    "numbers": [
-    17,
+    12,
+    16,
     20,
     25,
-    30,
-    34,
-    35
+    33,
+    42
    ],
-   "sum": 161,
-   "odd": 3,
-   "bands": 3
+   "sum": 148,
+   "odd": 2,
+   "bands": 4
   },
   {
    "label": "장기 미출현",
    "tag": "cold",
    "desc": "가장 오랫동안 나오지 않은 번호에 가중치를 둔 조합",
    "numbers": [
-    3,
     5,
-    14,
-    30,
-    38,
-    44
+    6,
+    9,
+    26,
+    28,
+    45
    ],
-   "sum": 134,
-   "odd": 2,
-   "bands": 5
+   "sum": 119,
+   "odd": 3,
+   "bands": 3
   },
   {
    "label": "균형 배분",
    "tag": "balanced",
    "desc": "홀짝 3:3, 4개 이상 구간에 분산, 합계는 최빈 구간 안에 드는 조합",
    "numbers": [
-    9,
-    11,
-    20,
-    30,
-    32,
+    14,
+    15,
+    27,
+    28,
+    34,
     43
    ],
-   "sum": 145,
+   "sum": 161,
    "odd": 3,
-   "bands": 5
+   "bands": 4
   },
   {
    "label": "궁합수",
    "tag": "pair",
-   "desc": "최근 5년 동반 출현이 가장 잦았던 31·44을(를) 축으로 확장한 조합",
+   "desc": "최근 5년 동반 출현이 가장 잦았던 27·38을(를) 축으로 확장한 조합",
    "numbers": [
-    8,
-    9,
-    17,
-    18,
-    31,
-    44
+    12,
+    15,
+    27,
+    35,
+    38,
+    39
    ],
-   "sum": 127,
-   "odd": 3,
-   "bands": 4
+   "sum": 166,
+   "odd": 4,
+   "bands": 3
   },
   {
    "label": "하위 제외 랜덤",
    "tag": "random",
    "desc": "최근 5년 출현 빈도가 가장 낮은 5개(2, 5, 10, 39, 43)를 제외한 40개에서 무작위 추출 후 통계 필터를 통과한 조합",
    "numbers": [
-    4,
-    9,
-    21,
-    22,
-    28,
-    33
+    8,
+    13,
+    20,
+    23,
+    32,
+    42
    ],
    "excluded": [
     2,
@@ -110,9 +110,9 @@ window.LOTTO_DATA = {
     39,
     43
    ],
-   "sum": 117,
-   "odd": 3,
-   "bands": 3
+   "sum": 138,
+   "odd": 2,
+   "bands": 5
   }
  ],
  "frequency": [
@@ -121,7 +121,7 @@ window.LOTTO_DATA = {
    "count": 31,
    "pct": 1.98,
    "vs_expected": -3.8,
-   "gap": 5,
+   "gap": 6,
    "band": "1–10"
   },
   {
@@ -129,7 +129,7 @@ window.LOTTO_DATA = {
    "count": 24,
    "pct": 1.53,
    "vs_expected": -10.8,
-   "gap": 1,
+   "gap": 2,
    "band": "1–10"
   },
   {
@@ -137,7 +137,7 @@ window.LOTTO_DATA = {
    "count": 42,
    "pct": 2.68,
    "vs_expected": 7.2,
-   "gap": 9,
+   "gap": 10,
    "band": "1–10"
   },
   {
@@ -145,7 +145,7 @@ window.LOTTO_DATA = {
    "count": 28,
    "pct": 1.79,
    "vs_expected": -6.8,
-   "gap": 8,
+   "gap": 9,
    "band": "1–10"
   },
   {
@@ -153,7 +153,7 @@ window.LOTTO_DATA = {
    "count": 24,
    "pct": 1.53,
    "vs_expected": -10.8,
-   "gap": 26,
+   "gap": 27,
    "band": "1–10"
   },
   {
@@ -161,15 +161,15 @@ window.LOTTO_DATA = {
    "count": 43,
    "pct": 2.75,
    "vs_expected": 8.2,
-   "gap": 4,
+   "gap": 5,
    "band": "1–10"
   },
   {
    "n": 7,
-   "count": 42,
-   "pct": 2.68,
-   "vs_expected": 7.2,
-   "gap": 4,
+   "count": 41,
+   "pct": 2.62,
+   "vs_expected": 6.2,
+   "gap": 5,
    "band": "1–10"
   },
   {
@@ -177,7 +177,7 @@ window.LOTTO_DATA = {
    "count": 29,
    "pct": 1.85,
    "vs_expected": -5.8,
-   "gap": 9,
+   "gap": 10,
    "band": "1–10"
   },
   {
@@ -185,7 +185,7 @@ window.LOTTO_DATA = {
    "count": 31,
    "pct": 1.98,
    "vs_expected": -3.8,
-   "gap": 9,
+   "gap": 10,
    "band": "1–10"
   },
   {
@@ -193,7 +193,7 @@ window.LOTTO_DATA = {
    "count": 26,
    "pct": 1.66,
    "vs_expected": -8.8,
-   "gap": 2,
+   "gap": 3,
    "band": "1–10"
   },
   {
@@ -209,14 +209,14 @@ window.LOTTO_DATA = {
    "count": 40,
    "pct": 2.55,
    "vs_expected": 5.2,
-   "gap": 3,
+   "gap": 4,
    "band": "11–20"
   },
   {
    "n": 13,
-   "count": 44,
-   "pct": 2.81,
-   "vs_expected": 9.2,
+   "count": 45,
+   "pct": 2.87,
+   "vs_expected": 10.2,
    "gap": 0,
    "band": "11–20"
   },
@@ -225,7 +225,7 @@ window.LOTTO_DATA = {
    "count": 34,
    "pct": 2.17,
    "vs_expected": -0.8,
-   "gap": 8,
+   "gap": 9,
    "band": "11–20"
   },
   {
@@ -233,15 +233,15 @@ window.LOTTO_DATA = {
    "count": 38,
    "pct": 2.43,
    "vs_expected": 3.2,
-   "gap": 4,
+   "gap": 5,
    "band": "11–20"
   },
   {
    "n": 16,
-   "count": 42,
-   "pct": 2.68,
-   "vs_expected": 7.2,
-   "gap": 12,
+   "count": 41,
+   "pct": 2.62,
+   "vs_expected": 6.2,
+   "gap": 13,
    "band": "11–20"
   },
   {
@@ -249,7 +249,7 @@ window.LOTTO_DATA = {
    "count": 31,
    "pct": 1.98,
    "vs_expected": -3.8,
-   "gap": 13,
+   "gap": 14,
    "band": "11–20"
   },
   {
@@ -257,31 +257,31 @@ window.LOTTO_DATA = {
    "count": 36,
    "pct": 2.3,
    "vs_expected": 1.2,
-   "gap": 1,
-   "band": "11–20"
-  },
-  {
-   "n": 19,
-   "count": 38,
-   "pct": 2.43,
-   "vs_expected": 3.2,
-   "gap": 5,
-   "band": "11–20"
-  },
-  {
-   "n": 20,
-   "count": 36,
-   "pct": 2.3,
-   "vs_expected": 1.2,
    "gap": 2,
    "band": "11–20"
   },
   {
+   "n": 19,
+   "count": 39,
+   "pct": 2.49,
+   "vs_expected": 4.2,
+   "gap": 0,
+   "band": "11–20"
+  },
+  {
+   "n": 20,
+   "count": 37,
+   "pct": 2.36,
+   "vs_expected": 2.2,
+   "gap": 0,
+   "band": "11–20"
+  },
+  {
    "n": 21,
-   "count": 36,
-   "pct": 2.3,
-   "vs_expected": 1.2,
-   "gap": 3,
+   "count": 35,
+   "pct": 2.23,
+   "vs_expected": 0.2,
+   "gap": 4,
    "band": "21–30"
   },
   {
@@ -289,7 +289,7 @@ window.LOTTO_DATA = {
    "count": 33,
    "pct": 2.11,
    "vs_expected": -1.8,
-   "gap": 0,
+   "gap": 1,
    "band": "21–30"
   },
   {
@@ -297,7 +297,7 @@ window.LOTTO_DATA = {
    "count": 32,
    "pct": 2.04,
    "vs_expected": -2.8,
-   "gap": 2,
+   "gap": 3,
    "band": "21–30"
   },
   {
@@ -305,7 +305,7 @@ window.LOTTO_DATA = {
    "count": 36,
    "pct": 2.3,
    "vs_expected": 1.2,
-   "gap": 7,
+   "gap": 8,
    "band": "21–30"
   },
   {
@@ -313,7 +313,7 @@ window.LOTTO_DATA = {
    "count": 27,
    "pct": 1.72,
    "vs_expected": -7.8,
-   "gap": 6,
+   "gap": 7,
    "band": "21–30"
   },
   {
@@ -321,15 +321,15 @@ window.LOTTO_DATA = {
    "count": 36,
    "pct": 2.3,
    "vs_expected": 1.2,
-   "gap": 13,
+   "gap": 14,
    "band": "21–30"
   },
   {
    "n": 27,
-   "count": 40,
-   "pct": 2.55,
-   "vs_expected": 5.2,
-   "gap": 15,
+   "count": 39,
+   "pct": 2.49,
+   "vs_expected": 4.2,
+   "gap": 16,
    "band": "21–30"
   },
   {
@@ -337,7 +337,7 @@ window.LOTTO_DATA = {
    "count": 35,
    "pct": 2.23,
    "vs_expected": 0.2,
-   "gap": 9,
+   "gap": 10,
    "band": "21–30"
   },
   {
@@ -345,7 +345,7 @@ window.LOTTO_DATA = {
    "count": 37,
    "pct": 2.36,
    "vs_expected": 2.2,
-   "gap": 3,
+   "gap": 4,
    "band": "21–30"
   },
   {
@@ -353,15 +353,15 @@ window.LOTTO_DATA = {
    "count": 40,
    "pct": 2.55,
    "vs_expected": 5.2,
-   "gap": 11,
+   "gap": 12,
    "band": "21–30"
   },
   {
    "n": 31,
-   "count": 37,
-   "pct": 2.36,
-   "vs_expected": 2.2,
-   "gap": 5,
+   "count": 38,
+   "pct": 2.43,
+   "vs_expected": 3.2,
+   "gap": 0,
    "band": "31–40"
   },
   {
@@ -369,15 +369,15 @@ window.LOTTO_DATA = {
    "count": 34,
    "pct": 2.17,
    "vs_expected": -0.8,
-   "gap": 0,
+   "gap": 1,
    "band": "31–40"
   },
   {
    "n": 33,
-   "count": 40,
-   "pct": 2.55,
-   "vs_expected": 5.2,
-   "gap": 0,
+   "count": 39,
+   "pct": 2.49,
+   "vs_expected": 4.2,
+   "gap": 1,
    "band": "31–40"
   },
   {
@@ -385,7 +385,7 @@ window.LOTTO_DATA = {
    "count": 35,
    "pct": 2.23,
    "vs_expected": 0.2,
-   "gap": 2,
+   "gap": 3,
    "band": "31–40"
   },
   {
@@ -393,7 +393,7 @@ window.LOTTO_DATA = {
    "count": 43,
    "pct": 2.75,
    "vs_expected": 8.2,
-   "gap": 5,
+   "gap": 6,
    "band": "31–40"
   },
   {
@@ -401,7 +401,7 @@ window.LOTTO_DATA = {
    "count": 34,
    "pct": 2.17,
    "vs_expected": -0.8,
-   "gap": 0,
+   "gap": 1,
    "band": "31–40"
   },
   {
@@ -409,7 +409,7 @@ window.LOTTO_DATA = {
    "count": 38,
    "pct": 2.43,
    "vs_expected": 3.2,
-   "gap": 2,
+   "gap": 3,
    "band": "31–40"
   },
   {
@@ -417,7 +417,7 @@ window.LOTTO_DATA = {
    "count": 42,
    "pct": 2.68,
    "vs_expected": 7.2,
-   "gap": 1,
+   "gap": 2,
    "band": "31–40"
   },
   {
@@ -425,7 +425,7 @@ window.LOTTO_DATA = {
    "count": 27,
    "pct": 1.72,
    "vs_expected": -7.8,
-   "gap": 4,
+   "gap": 5,
    "band": "31–40"
   },
   {
@@ -433,7 +433,7 @@ window.LOTTO_DATA = {
    "count": 33,
    "pct": 2.11,
    "vs_expected": -1.8,
-   "gap": 2,
+   "gap": 3,
    "band": "31–40"
   },
   {
@@ -441,7 +441,7 @@ window.LOTTO_DATA = {
    "count": 30,
    "pct": 1.92,
    "vs_expected": -4.8,
-   "gap": 12,
+   "gap": 13,
    "band": "41–45"
   },
   {
@@ -449,7 +449,7 @@ window.LOTTO_DATA = {
    "count": 30,
    "pct": 1.92,
    "vs_expected": -4.8,
-   "gap": 1,
+   "gap": 2,
    "band": "41–45"
   },
   {
@@ -457,15 +457,15 @@ window.LOTTO_DATA = {
    "count": 22,
    "pct": 1.4,
    "vs_expected": -12.8,
-   "gap": 4,
+   "gap": 5,
    "band": "41–45"
   },
   {
    "n": 44,
-   "count": 35,
-   "pct": 2.23,
-   "vs_expected": 0.2,
-   "gap": 11,
+   "count": 36,
+   "pct": 2.3,
+   "vs_expected": 1.2,
+   "gap": 0,
    "band": "41–45"
   },
   {
@@ -473,7 +473,7 @@ window.LOTTO_DATA = {
    "count": 40,
    "pct": 2.55,
    "vs_expected": 5.2,
-   "gap": 15,
+   "gap": 16,
    "band": "41–45"
   }
  ],
@@ -482,8 +482,8 @@ window.LOTTO_DATA = {
   6,
   35,
   3,
-  7,
-  16
+  38,
+  7
  ],
  "cold": [
   25,
@@ -513,6 +513,11 @@ window.LOTTO_DATA = {
    "count": 11
   },
   {
+   "a": 31,
+   "b": 44,
+   "count": 10
+  },
+  {
    "a": 19,
    "b": 21,
    "count": 10
@@ -538,6 +543,11 @@ window.LOTTO_DATA = {
    "count": 9
   },
   {
+   "a": 13,
+   "b": 20,
+   "count": 9
+  },
+  {
    "a": 31,
    "b": 41,
    "count": 9
@@ -548,18 +558,8 @@ window.LOTTO_DATA = {
    "count": 9
   },
   {
-   "a": 31,
-   "b": 44,
-   "count": 9
-  },
-  {
    "a": 6,
    "b": 11,
-   "count": 9
-  },
-  {
-   "a": 29,
-   "b": 45,
    "count": 9
   }
  ],
@@ -582,12 +582,12 @@ window.LOTTO_DATA = {
   {
    "label": "101–120",
    "lo": 101,
-   "count": 42
+   "count": 41
   },
   {
    "label": "121–140",
    "lo": 121,
-   "count": 64
+   "count": 65
   },
   {
    "label": "141–160",
@@ -634,11 +634,11 @@ window.LOTTO_DATA = {
   },
   {
    "odd": 4,
-   "count": 84
+   "count": 85
   },
   {
    "odd": 5,
-   "count": 22
+   "count": 21
   },
   {
    "odd": 6,
@@ -648,20 +648,20 @@ window.LOTTO_DATA = {
  "band_dist": [
   {
    "label": "1–10",
-   "count": 320,
-   "pct": 20.43,
+   "count": 319,
+   "pct": 20.37,
    "expected_pct": 22.22
   },
   {
    "label": "11–20",
-   "count": 374,
-   "pct": 23.88,
+   "count": 376,
+   "pct": 24.01,
    "expected_pct": 22.22
   },
   {
    "label": "21–30",
-   "count": 352,
-   "pct": 22.48,
+   "count": 350,
+   "pct": 22.35,
    "expected_pct": 22.22
   },
   {
@@ -672,16 +672,29 @@ window.LOTTO_DATA = {
   },
   {
    "label": "41–45",
-   "count": 157,
-   "pct": 10.03,
+   "count": 158,
+   "pct": 10.09,
    "expected_pct": 11.11
   }
  ],
- "sum_mean": 138.6,
+ "sum_mean": 138.7,
  "sum_p10": 99,
  "sum_p90": 176,
- "consecutive_rate": 50.6,
+ "consecutive_rate": 51.0,
  "recent": [
+  {
+   "no": 1240,
+   "date": "2026-09-05",
+   "numbers": [
+    11,
+    13,
+    19,
+    20,
+    31,
+    44
+   ],
+   "bonus": 27
+  },
   {
    "no": 1239,
    "date": "2026-08-29",
@@ -798,19 +811,6 @@ window.LOTTO_DATA = {
     38
    ],
    "bonus": 15
-  },
-  {
-   "no": 1230,
-   "date": "2026-06-27",
-   "numbers": [
-    3,
-    8,
-    9,
-    22,
-    28,
-    42
-   ],
-   "bonus": 45
   }
  ]
 };
