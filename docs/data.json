@@ -1,30 +1,30 @@
 {
- "generated_at": "2026-09-20T18:33:07+09:00",
+ "generated_at": "2026-09-27T18:33:53+09:00",
  "source": "smok95/lotto (동행복권 미러) + 동행복권 공식 API",
  "latest": {
-  "no": 1242,
-  "date": "2026-09-19",
+  "no": 1243,
+  "date": "2026-09-26",
   "numbers": [
-   2,
-   4,
-   10,
-   16,
-   31,
-   41
+   9,
+   18,
+   24,
+   38,
+   43,
+   44
   ],
-  "bonus": 9
+  "bonus": 35
  },
- "next_draw_no": 1243,
+ "next_draw_no": 1244,
  "window": {
   "years": 5,
   "draw_count": 261,
-  "from_draw": 982,
-  "to_draw": 1242,
-  "from_date": "2021-09-25",
-  "to_date": "2026-09-19"
+  "from_draw": 983,
+  "to_draw": 1243,
+  "from_date": "2021-10-02",
+  "to_date": "2026-09-26"
  },
  "totals": {
-  "all_draws": 1242
+  "all_draws": 1243
  },
  "recommendations": [
   {
@@ -32,14 +32,14 @@
    "tag": "hot",
    "desc": "최근 5년 출현 빈도 상위 번호에 가중치를 둔 조합",
    "numbers": [
-    7,
+    1,
     20,
-    32,
-    35,
-    39,
-    42
+    21,
+    30,
+    38,
+    39
    ],
-   "sum": 175,
+   "sum": 149,
    "odd": 3,
    "bands": 4
   },
@@ -48,60 +48,60 @@
    "tag": "cold",
    "desc": "가장 오랫동안 나오지 않은 번호에 가중치를 둔 조합",
    "numbers": [
+    3,
     5,
-    8,
-    9,
-    27,
-    29,
-    44
+    11,
+    16,
+    26,
+    40
    ],
-   "sum": 122,
-   "odd": 4,
-   "bands": 3
+   "sum": 101,
+   "odd": 3,
+   "bands": 4
   },
   {
    "label": "균형 배분",
    "tag": "balanced",
    "desc": "홀짝 3:3, 4개 이상 구간에 분산, 합계는 최빈 구간 안에 드는 조합",
    "numbers": [
-    1,
-    4,
-    12,
-    23,
-    26,
-    41
+    2,
+    5,
+    15,
+    27,
+    30,
+    38
    ],
-   "sum": 107,
+   "sum": 117,
    "odd": 3,
    "bands": 4
   },
   {
    "label": "궁합수",
    "tag": "pair",
-   "desc": "최근 5년 동반 출현이 가장 잦았던 31·41을(를) 축으로 확장한 조합",
+   "desc": "최근 5년 동반 출현이 가장 잦았던 31·44을(를) 축으로 확장한 조합",
    "numbers": [
-    17,
+    7,
     20,
-    22,
+    29,
     31,
-    41,
+    42,
     44
    ],
-   "sum": 175,
+   "sum": 173,
    "odd": 3,
-   "bands": 4
+   "bands": 5
   },
   {
    "label": "하위 제외 랜덤",
    "tag": "random",
    "desc": "최근 5년 출현 빈도가 가장 낮은 5개(2, 5, 10, 39, 43)를 제외한 40개에서 무작위 추출 후 통계 필터를 통과한 조합",
    "numbers": [
-    6,
-    15,
-    24,
-    37,
-    41,
-    44
+    3,
+    8,
+    19,
+    31,
+    32,
+    38
    ],
    "excluded": [
     2,
@@ -110,9 +110,9 @@
     39,
     43
    ],
-   "sum": 167,
+   "sum": 131,
    "odd": 3,
-   "bands": 5
+   "bands": 3
   }
  ],
  "frequency": [
@@ -121,7 +121,7 @@
    "count": 31,
    "pct": 1.98,
    "vs_expected": -3.8,
-   "gap": 8,
+   "gap": 9,
    "band": "1–10"
   },
   {
@@ -129,7 +129,7 @@
    "count": 25,
    "pct": 1.6,
    "vs_expected": -9.8,
-   "gap": 0,
+   "gap": 1,
    "band": "1–10"
   },
   {
@@ -137,7 +137,7 @@
    "count": 41,
    "pct": 2.62,
    "vs_expected": 6.2,
-   "gap": 12,
+   "gap": 13,
    "band": "1–10"
   },
   {
@@ -145,15 +145,15 @@
    "count": 29,
    "pct": 1.85,
    "vs_expected": -5.8,
-   "gap": 0,
+   "gap": 1,
    "band": "1–10"
   },
   {
    "n": 5,
-   "count": 24,
-   "pct": 1.53,
-   "vs_expected": -10.8,
-   "gap": 29,
+   "count": 23,
+   "pct": 1.47,
+   "vs_expected": -11.8,
+   "gap": 30,
    "band": "1–10"
   },
   {
@@ -161,15 +161,15 @@
    "count": 43,
    "pct": 2.75,
    "vs_expected": 8.2,
-   "gap": 7,
+   "gap": 8,
    "band": "1–10"
   },
   {
    "n": 7,
-   "count": 42,
-   "pct": 2.68,
-   "vs_expected": 7.2,
-   "gap": 1,
+   "count": 41,
+   "pct": 2.62,
+   "vs_expected": 6.2,
+   "gap": 2,
    "band": "1–10"
   },
   {
@@ -177,15 +177,15 @@
    "count": 29,
    "pct": 1.85,
    "vs_expected": -5.8,
-   "gap": 12,
+   "gap": 13,
    "band": "1–10"
   },
   {
    "n": 9,
-   "count": 31,
-   "pct": 1.98,
-   "vs_expected": -3.8,
-   "gap": 12,
+   "count": 32,
+   "pct": 2.04,
+   "vs_expected": -2.8,
+   "gap": 0,
    "band": "1–10"
   },
   {
@@ -193,7 +193,7 @@
    "count": 27,
    "pct": 1.72,
    "vs_expected": -7.8,
-   "gap": 0,
+   "gap": 1,
    "band": "1–10"
   },
   {
@@ -201,7 +201,7 @@
    "count": 35,
    "pct": 2.23,
    "vs_expected": 0.2,
-   "gap": 2,
+   "gap": 3,
    "band": "11–20"
   },
   {
@@ -209,15 +209,15 @@
    "count": 40,
    "pct": 2.55,
    "vs_expected": 5.2,
-   "gap": 6,
+   "gap": 7,
    "band": "11–20"
   },
   {
    "n": 13,
-   "count": 45,
-   "pct": 2.87,
-   "vs_expected": 10.2,
-   "gap": 1,
+   "count": 44,
+   "pct": 2.81,
+   "vs_expected": 9.2,
+   "gap": 2,
    "band": "11–20"
   },
   {
@@ -225,7 +225,7 @@
    "count": 34,
    "pct": 2.17,
    "vs_expected": -0.8,
-   "gap": 11,
+   "gap": 12,
    "band": "11–20"
   },
   {
@@ -233,7 +233,7 @@
    "count": 38,
    "pct": 2.43,
    "vs_expected": 3.2,
-   "gap": 7,
+   "gap": 8,
    "band": "11–20"
   },
   {
@@ -241,7 +241,7 @@
    "count": 42,
    "pct": 2.68,
    "vs_expected": 7.2,
-   "gap": 0,
+   "gap": 1,
    "band": "11–20"
   },
   {
@@ -249,15 +249,15 @@
    "count": 31,
    "pct": 1.98,
    "vs_expected": -3.8,
-   "gap": 16,
+   "gap": 17,
    "band": "11–20"
   },
   {
    "n": 18,
-   "count": 36,
-   "pct": 2.3,
-   "vs_expected": 1.2,
-   "gap": 4,
+   "count": 37,
+   "pct": 2.36,
+   "vs_expected": 2.2,
+   "gap": 0,
    "band": "11–20"
   },
   {
@@ -265,23 +265,23 @@
    "count": 39,
    "pct": 2.49,
    "vs_expected": 4.2,
-   "gap": 2,
+   "gap": 3,
    "band": "11–20"
   },
   {
    "n": 20,
-   "count": 37,
-   "pct": 2.36,
-   "vs_expected": 2.2,
-   "gap": 2,
+   "count": 36,
+   "pct": 2.3,
+   "vs_expected": 1.2,
+   "gap": 3,
    "band": "11–20"
   },
   {
    "n": 21,
-   "count": 35,
-   "pct": 2.23,
-   "vs_expected": 0.2,
-   "gap": 6,
+   "count": 34,
+   "pct": 2.17,
+   "vs_expected": -0.8,
+   "gap": 7,
    "band": "21–30"
   },
   {
@@ -289,7 +289,7 @@
    "count": 33,
    "pct": 2.11,
    "vs_expected": -1.8,
-   "gap": 3,
+   "gap": 4,
    "band": "21–30"
   },
   {
@@ -297,15 +297,15 @@
    "count": 32,
    "pct": 2.04,
    "vs_expected": -2.8,
-   "gap": 1,
+   "gap": 2,
    "band": "21–30"
   },
   {
    "n": 24,
-   "count": 36,
-   "pct": 2.3,
-   "vs_expected": 1.2,
-   "gap": 1,
+   "count": 37,
+   "pct": 2.36,
+   "vs_expected": 2.2,
+   "gap": 0,
    "band": "21–30"
   },
   {
@@ -313,7 +313,7 @@
    "count": 27,
    "pct": 1.72,
    "vs_expected": -7.8,
-   "gap": 9,
+   "gap": 10,
    "band": "21–30"
   },
   {
@@ -321,7 +321,7 @@
    "count": 36,
    "pct": 2.3,
    "vs_expected": 1.2,
-   "gap": 16,
+   "gap": 17,
    "band": "21–30"
   },
   {
@@ -329,7 +329,7 @@
    "count": 38,
    "pct": 2.43,
    "vs_expected": 3.2,
-   "gap": 18,
+   "gap": 19,
    "band": "21–30"
   },
   {
@@ -337,7 +337,7 @@
    "count": 35,
    "pct": 2.23,
    "vs_expected": 0.2,
-   "gap": 12,
+   "gap": 13,
    "band": "21–30"
   },
   {
@@ -345,7 +345,7 @@
    "count": 37,
    "pct": 2.36,
    "vs_expected": 2.2,
-   "gap": 6,
+   "gap": 7,
    "band": "21–30"
   },
   {
@@ -353,7 +353,7 @@
    "count": 40,
    "pct": 2.55,
    "vs_expected": 5.2,
-   "gap": 14,
+   "gap": 15,
    "band": "21–30"
   },
   {
@@ -361,7 +361,7 @@
    "count": 39,
    "pct": 2.49,
    "vs_expected": 4.2,
-   "gap": 0,
+   "gap": 1,
    "band": "31–40"
   },
   {
@@ -369,7 +369,7 @@
    "count": 34,
    "pct": 2.17,
    "vs_expected": -0.8,
-   "gap": 3,
+   "gap": 4,
    "band": "31–40"
   },
   {
@@ -377,7 +377,7 @@
    "count": 39,
    "pct": 2.49,
    "vs_expected": 4.2,
-   "gap": 3,
+   "gap": 4,
    "band": "31–40"
   },
   {
@@ -385,7 +385,7 @@
    "count": 35,
    "pct": 2.23,
    "vs_expected": 0.2,
-   "gap": 5,
+   "gap": 6,
    "band": "31–40"
   },
   {
@@ -393,7 +393,7 @@
    "count": 42,
    "pct": 2.68,
    "vs_expected": 7.2,
-   "gap": 8,
+   "gap": 9,
    "band": "31–40"
   },
   {
@@ -401,7 +401,7 @@
    "count": 33,
    "pct": 2.11,
    "vs_expected": -1.8,
-   "gap": 3,
+   "gap": 4,
    "band": "31–40"
   },
   {
@@ -409,15 +409,15 @@
    "count": 37,
    "pct": 2.36,
    "vs_expected": 2.2,
-   "gap": 5,
+   "gap": 6,
    "band": "31–40"
   },
   {
    "n": 38,
-   "count": 42,
-   "pct": 2.68,
-   "vs_expected": 7.2,
-   "gap": 4,
+   "count": 43,
+   "pct": 2.75,
+   "vs_expected": 8.2,
+   "gap": 0,
    "band": "31–40"
   },
   {
@@ -425,7 +425,7 @@
    "count": 27,
    "pct": 1.72,
    "vs_expected": -7.8,
-   "gap": 7,
+   "gap": 8,
    "band": "31–40"
   },
   {
@@ -433,7 +433,7 @@
    "count": 33,
    "pct": 2.11,
    "vs_expected": -1.8,
-   "gap": 5,
+   "gap": 6,
    "band": "31–40"
   },
   {
@@ -441,7 +441,7 @@
    "count": 30,
    "pct": 1.92,
    "vs_expected": -4.8,
-   "gap": 0,
+   "gap": 1,
    "band": "41–45"
   },
   {
@@ -449,15 +449,15 @@
    "count": 30,
    "pct": 1.92,
    "vs_expected": -4.8,
-   "gap": 4,
+   "gap": 5,
    "band": "41–45"
   },
   {
    "n": 43,
-   "count": 22,
-   "pct": 1.4,
-   "vs_expected": -12.8,
-   "gap": 1,
+   "count": 23,
+   "pct": 1.47,
+   "vs_expected": -11.8,
+   "gap": 0,
    "band": "41–45"
   },
   {
@@ -465,7 +465,7 @@
    "count": 36,
    "pct": 2.3,
    "vs_expected": 1.2,
-   "gap": 2,
+   "gap": 0,
    "band": "41–45"
   },
   {
@@ -473,17 +473,17 @@
    "count": 39,
    "pct": 2.49,
    "vs_expected": 4.2,
-   "gap": 18,
+   "gap": 19,
    "band": "41–45"
   }
  ],
  "hot": [
   13,
   6,
-  7,
+  38,
   16,
   35,
-  38
+  3
  ],
  "cold": [
   10,
@@ -534,11 +534,6 @@
   },
   {
    "a": 13,
-   "b": 20,
-   "count": 9
-  },
-  {
-   "a": 13,
    "b": 18,
    "count": 9
   },
@@ -561,6 +556,11 @@
    "a": 3,
    "b": 15,
    "count": 9
+  },
+  {
+   "a": 3,
+   "b": 6,
+   "count": 9
   }
  ],
  "sum_hist": [
@@ -582,7 +582,7 @@
   {
    "label": "101–120",
    "lo": 101,
-   "count": 41
+   "count": 40
   },
   {
    "label": "121–140",
@@ -597,7 +597,7 @@
   {
    "label": "161–180",
    "lo": 161,
-   "count": 41
+   "count": 42
   },
   {
    "label": "181–200",
@@ -626,7 +626,7 @@
   },
   {
    "odd": 2,
-   "count": 61
+   "count": 62
   },
   {
    "odd": 3,
@@ -634,7 +634,7 @@
   },
   {
    "odd": 4,
-   "count": 85
+   "count": 84
   },
   {
    "odd": 5,
@@ -648,14 +648,14 @@
  "band_dist": [
   {
    "label": "1–10",
-   "count": 322,
-   "pct": 20.56,
+   "count": 321,
+   "pct": 20.5,
    "expected_pct": 22.22
   },
   {
    "label": "11–20",
-   "count": 377,
-   "pct": 24.07,
+   "count": 376,
+   "pct": 24.01,
    "expected_pct": 22.22
   },
   {
@@ -666,22 +666,35 @@
   },
   {
    "label": "31–40",
-   "count": 361,
-   "pct": 23.05,
+   "count": 362,
+   "pct": 23.12,
    "expected_pct": 22.22
   },
   {
    "label": "41–45",
-   "count": 157,
-   "pct": 10.03,
+   "count": 158,
+   "pct": 10.09,
    "expected_pct": 11.11
   }
  ],
- "sum_mean": 138.3,
+ "sum_mean": 138.5,
  "sum_p10": 99,
  "sum_p90": 176,
  "consecutive_rate": 50.6,
  "recent": [
+  {
+   "no": 1243,
+   "date": "2026-09-26",
+   "numbers": [
+    9,
+    18,
+    24,
+    38,
+    43,
+    44
+   ],
+   "bonus": 35
+  },
   {
    "no": 1242,
    "date": "2026-09-19",
@@ -798,19 +811,6 @@
     43
    ],
    "bonus": 27
-  },
-  {
-   "no": 1233,
-   "date": "2026-07-18",
-   "numbers": [
-    2,
-    7,
-    20,
-    25,
-    37,
-    40
-   ],
-   "bonus": 29
   }
  ]
 }
